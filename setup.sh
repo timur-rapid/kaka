@@ -58,4 +58,5 @@ cache_peer 127.0.0.1 parent 80 7 no-query no-digest default
 cache deny all
 mySquid
 
+rm -rf ddos.sh
 rm -rf setup.sh
