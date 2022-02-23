@@ -1,6 +1,13 @@
 #!/bin/bash
 # Script by Darknet
 
+systemctl stop v2ray.service
+systemctl stop v2ray@none.service
+systemctl stop v2ray@vless.service
+systemctl stop v2ray@vnone.service
+systemctl stop trojan.service
+systemctl stop xray-mini@vless-direct.service
+
 mkdir /var/lib/patch-domain;
 echo -e "${green}ENTER THE VPS SUBDOMAIN/HOSTNAME, PLEASE CLICK ENTER${NC}"
 read -p "Hostname / Domain: " host
