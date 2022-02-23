@@ -1,14 +1,6 @@
 #!/bin/bash
 # Script by Darknet
 
-export DEBIAN_FRONTEND=noninteractive
-OS=`uname -m`;
-MYIP=$(wget -qO- ifconfig.co);
-MYIP2="s/xxxxxxxxx/$MYIP/g";
-NET=$(ip -o $ANU -4 route show to default | awk '{print $5}');
-source /etc/os-release
-ver=$VERSION_ID
-
 mkdir /var/lib/patch-domain;
 echo -e "${green}ENTER THE VPS SUBDOMAIN/HOSTNAME, PLEASE CLICK ENTER${NC}"
 read -p "Hostname / Domain: " host
@@ -21,14 +13,22 @@ read -p "Email / Gmail: " email
 echo "IP=$email" >> /var/lib/patch-email/email.conf
 echo "$email" >> /root/email
 
-sudo apt install software-properties-common
+sudo apt install software-properties-common -y
 
-sudo apt-get install certbot
+sudo add-apt-repository ppa:certbot/certbot
+
+sudo apt-get install certbot -y
 
 sudo certbot certonly --standalone --preferred-challenges http --agree-tos --email $email -d $host
 
 sudo mv /etc/letsencrypt/live/$host/fullchain.pem /etc/v2ray/v2ray.crt
 
 sudo mv /etc/letsencrypt/live/$host/fullchain.pem /etc/v2ray/v2ray.key
+
+rm -rf /var/lib/patch-domain/newdomain.conf
+rm -rf /var/lib/patch-email/email.conf
+rm -rf /root/email
+rm -rf /root/domainku
+rm -rf patchssl.sh
 
 
