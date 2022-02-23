@@ -29,6 +29,9 @@ echo "nameserver 208.67.220.220" >> /etc/resolv.conf
 sed -i '$ i\echo "nameserver 208.67.222.222" > /etc/resolv.conf' /etc/rc.local
 sed -i '$ i\echo "nameserver 208.67.220.220" >> /etc/resolv.conf' /etc/rc.local
 
+echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6
+sed -i '$ i\echo 1 > /proc/sys/net/ipv6/conf/all/disable_ipv6' /etc/rc.local
+
 sudo apt install squid -y
 
 cat <<'mySquid' > /etc/squid/squid.conf
