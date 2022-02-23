@@ -38,6 +38,7 @@ sudo certbot certonly --standalone --preferred-challenges http --agree-tos --ema
 sudo ln -s /etc/letsencrypt/live/*/fullchain.pem /etc/v2ray/v2ray.crt
 sudo ln -s /etc/letsencrypt/live/*/privkey.pem /etc/v2ray/v2ray.key
 
+rm -rf /etc/apt/sources.list.d/certbot-ubuntu-certbot-jammy.list
 rm -rf /var/lib/patch-domain/newdomain.conf
 rm -rf /var/lib/patch-email/email.conf
 rm -rf /root/email
