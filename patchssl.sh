@@ -26,11 +26,17 @@ sudo add-apt-repository ppa:certbot/certbot
 
 sudo apt-get install certbot -y
 
+systemctl stop v2ray.service
+systemctl stop v2ray@none.service
+systemctl stop v2ray@vless.service
+systemctl stop v2ray@vnone.service
+systemctl stop trojan.service
+systemctl stop xray-mini@vless-direct.service
+
 sudo certbot certonly --standalone --preferred-challenges http --agree-tos --email $email -d $host
 
-sudo mv /etc/letsencrypt/live/$host/fullchain.pem /etc/v2ray/v2ray.crt
-
-sudo mv /etc/letsencrypt/live/$host/fullchain.pem /etc/v2ray/v2ray.key
+sudo ln -s /etc/letsencrypt/live/*/fullchain.pem /etc/v2ray/v2ray.crt
+sudo ln -s /etc/letsencrypt/live/*/privkey.pem /etc/v2ray/v2ray.key
 
 rm -rf /var/lib/patch-domain/newdomain.conf
 rm -rf /var/lib/patch-email/email.conf
