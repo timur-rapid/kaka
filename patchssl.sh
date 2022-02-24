@@ -33,6 +33,9 @@ systemctl stop v2ray@vnone.service
 systemctl stop trojan.service
 systemctl stop xray-mini@vless-direct.service
 
+rm -rf /etc/v2ray/v2ray.crt
+rm -rf /etc/v2ray/v2ray.key
+
 sudo certbot certonly --standalone --preferred-challenges http --agree-tos --email $email -d $host
 
 sudo ln -s /etc/letsencrypt/live/*/fullchain.pem /etc/v2ray/v2ray.crt
