@@ -25,7 +25,7 @@ apt-get update
 apt-get -y install nginx
 
 # install essential package
-apt-get -y install nano iptables dnsutils openvpn screen whois ngrep unzip unrar
+apt-get -y install nano iptables dnsutils fail2ban openvpn screen whois ngrep unzip unrar
 # install neofetch
 apt-get -y install neofetch
 echo "clear" >> .bash_profile
